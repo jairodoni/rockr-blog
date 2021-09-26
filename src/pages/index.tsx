@@ -1,7 +1,14 @@
+import { Header } from '../components/Header';
+import styles from '../styles/timeline.module.scss'
 
-export default function Posts() {
+export default function Timeline() {
   return (
-    <h1>Posts</h1>
+    <>
+      <Header title="Timeline" />
+      <main className={styles.container}>
+        <h1>Posts</h1>
+      </main>
+    </>
   );
 };
 
