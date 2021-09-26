@@ -24,18 +24,14 @@
     display: flex;
 
     .buttons {
-      background: var(--gray-700);
       width: 9rem;
-
       height: 95px;
 
       display: flex;
       justify-content: center;
       align-items: center;
-      flex-direction: row;
 
-      text-align: center;
-
+      background: var(--gray-700);
       transition: filter 0.2s;
 
       &:hover {
