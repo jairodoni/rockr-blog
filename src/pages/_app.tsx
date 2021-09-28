@@ -1,6 +1,7 @@
-import '../styles/global.scss';
 import type { AppProps } from 'next/app';
 import { Navigation } from '../components/Navigation';
+
+import '../styles/global.scss';
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (

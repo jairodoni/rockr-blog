@@ -1,0 +1,82 @@
+.card {
+  display: grid;
+  grid-template-columns: 1.4fr 1.6fr;
+
+  background: var(--white);
+  color: var(--gray-700);
+
+  .info {
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+
+    font-size: clamp(0.5rem, 0.1rem + 1vw, 2.5rem);
+
+    h2 {
+      font-size: 1.2rem;
+      margin-bottom: 10px;
+      color: var(--yellow-500);
+    }
+
+    span,
+    p {
+      font-size: 0.7rem;
+
+      white-space: normal;
+    }
+
+    p + p {
+      font-size: 0;
+    }
+  }
+}
+
+.icon {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  img {
+    width: 16px;
+    height: 16px;
+  }
+}
+
+//Get all cards in 3ª position
+.card:nth-child(3n + 3) {
+  max-height: 350px;
+  width: 60%;
+  grid-column: -3 / -1;
+}
+
+//Get all cards in 6ª position
+.card:nth-child(6n + 3) {
+  margin-left: 40%;
+}
+
+//Get all cards in 4ª e 5ª position and reverse positions
+.card:nth-child(6n + 4),
+.card:nth-child(6n + 5) {
+  grid-template-columns: 1.6fr 1.4fr;
+  img {
+    grid-row: 2;
+  }
+  .info {
+    grid-row: 1;
+  }
+}
+
+@media (max-width: 500px) {
+  .info {
+    h2 {
+      font-size: 0.3rem;
+    }
+    p {
+      font-size: 0.1rem;
+    }
+  }
+  .card:nth-child(3n + 3) {
+    width: 100%;
+    margin-left: 0;
+  }
+}
