@@ -1,6 +1,7 @@
-import { GetServerSideProps } from 'next';
+import { useEffect, useState } from 'react';
 import { CardPost } from '../components/CardPost';
 import { Header } from '../components/Header';
+import { Loading } from '../components/Loading';
 import { api } from '../services/api';
 
 import styles from '../styles/timeline.module.scss';
@@ -13,11 +14,44 @@ interface Post {
   date: Date;
 }
 
-interface TimelineProps {
-  posts: Post[];
-}
+export default function Timeline() {
+  const [posts, setPosts] = useState<Post[]>([]);
+  const [page, setPage] = useState(1);
+  const [limitPosts, setLimitPosts] = useState(10);
+  const [totalPage, setTotalPage] = useState(0);
+  const [loading, setLoading] = useState(false);
 
-export default function Timeline({ posts }: TimelineProps) {
+  //Function for get posts
+  async function listPosts() {
+    setLoading(true);
+    const { data, headers } = await api.get(`/articles?_page=${page}&_limit=${limitPosts}`)
+
+    setTotalPage(headers['x-total-count'] / limitPosts);
+    setPosts([...posts, ...data]);
+    setLoading(false);
+  }
+
+  useEffect(() => {
+    listPosts()
+  }, [page]);
+
+  //Calculation for loading pages
+  function handleScroll() {
+    if (window.innerHeight + document.documentElement.scrollTop <
+      document.documentElement.offsetHeight ||
+      page === totalPage ||
+      loading
+    ) {
+      return;
+    }
+    setPage(page + 1);
+  }
+
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [loading]);
+
   return (
     <>
       <Header title="Timeline" />
@@ -27,25 +61,10 @@ export default function Timeline({ posts }: TimelineProps) {
             <CardPost key={post.id} post={post} />
           ))}
         </section>
+        {loading && page > 1 && (
+          <Loading />
+        )}
       </main>
     </>
   );
 };
-
-export const getServerSideProps: GetServerSideProps = async () => {
-  const response = await api.get("/articles");
-
-  //Sort by Date
-  const posts = response.data.sort((a: any, b: any) => {
-    const date01: any = new Date(b.date);
-    const date02: any = new Date(a.date);
-
-    return date01 - date02;
-  });
-
-  return {
-    props: {
-      posts
-    }
-  }
-}
