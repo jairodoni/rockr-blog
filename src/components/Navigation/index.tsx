@@ -1,8 +1,16 @@
+import { useState } from "react";
 import Link from "next/link";
+import { ContactModal } from "../ContactModal";
 
 import styles from "./styles.module.scss"
 
 export function Navigation() {
+  const [isOpenContact, setIsOpenContact] = useState(false);
+
+  function handleOpenCloseContact() {
+    setIsOpenContact(!isOpenContact);
+  }
+
   return (
     <div className={styles.navigation}>
       <h1>
@@ -15,12 +23,16 @@ export function Navigation() {
           </Link>
         </div>
 
-        <div className={styles.buttons}>
-          <Link href="/contact">
+        <div className={styles.buttons} onClick={handleOpenCloseContact}>
+          <Link href="/">
             <a>Contact</a>
           </Link>
         </div>
       </nav>
+      <ContactModal
+        isOpenContact={isOpenContact}
+        onRequestClose={handleOpenCloseContact}
+      />
     </div>
   )
 }

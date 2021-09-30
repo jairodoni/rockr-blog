@@ -46,7 +46,7 @@ h1 {
 h2 {
   font-size: 1.8rem;
 }
-body, input, textarea, select, button {
+body, input, textarea, select, button, label {
   font: 400 1rem 'Rubik', sans-serif;
 }
 
@@ -59,3 +59,60 @@ a {
   text-decoration: none;
 }
 
+.react-modal-overlay {
+  background: rgba(0, 0, 0, 0.5);
+
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1;
+}
+.react-modal-content {
+  background: var(--white);
+  width: 100%;
+  max-width: 576px;
+  padding: 5rem;
+  position: relative;
+}
+.react-modal-close {
+  position: absolute;
+  right: 1.5rem;
+  top: 1.5rem;
+  border: 0;
+  background: transparent;
+
+  transition: filter 0.2s;
+
+  &:hover {
+    filter: brightness(0.8);
+  }
+}
+
+@media (max-width: 500px) {
+  .react-modal-content {
+    max-width: 100%;
+    height: 100%;
+  }
+}
+
+  /* width */
+  ::-webkit-scrollbar {
+    width: 5px;
+    height: 5px;
+  }
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: #1f1502;
+    border: 1px solid rgba(82, 82, 82, 0.5);
+  }
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    opacity: 0.4;
+    background: var(--gray-50);
+  }
