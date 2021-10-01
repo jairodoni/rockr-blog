@@ -25,11 +25,10 @@ export function Navigation() {
           </div>
         </Link>
 
-        <Link href="/">
-          <div className={styles.buttons} onClick={handleOpenCloseContact}>
-            <a>Contact</a>
-          </div>
-        </Link>
+        <div className={styles.buttons} onClick={handleOpenCloseContact}>
+          <a>Contact</a>
+        </div>
+
         <Link href="/NewPost">
           <div className={styles.newPost} >
             <a>New Post</a>
