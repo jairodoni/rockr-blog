@@ -28,6 +28,11 @@ export function Navigation() {
             <a>Contact</a>
           </Link>
         </div>
+        <div className={styles.newPost} >
+          <Link href="/NewPost">
+            <a>New Post</a>
+          </Link>
+        </div>
       </nav>
       <ContactModal
         isOpenContact={isOpenContact}

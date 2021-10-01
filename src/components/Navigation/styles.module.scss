@@ -41,15 +41,38 @@
         color: var(--gray-50);
       }
     }
+
+    .newPost {
+      text-align: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      a {
+        border-radius: 20px;
+        padding: 10px 20px;
+        background: var(--yellow-500);
+        font-size: 1rem;
+      }
+    }
   }
 
   @media (max-width: 500px) {
     h1 {
       font-size: 1.5rem;
     }
+    a {
+      font-size: clamp(1.1rem, 0.5rem + 1vw, 2.5rem);
+    }
 
     div.buttons {
       width: 6rem;
+    }
+    div.newPost {
+      a {
+        padding: 5px;
+        font-size: 0.8rem;
+      }
     }
   }
 }
