@@ -15,7 +15,7 @@ interface Post {
   article: string;
 }
 const signInFormSchema = yup.object().shape({
-  title: yup.string().required('*Title required').max(200, "*You reached the maximum number of characters"),
+  title: yup.string().required('*Title required').max(100, "*You reached the maximum number of characters"),
   author: yup.string().required('*Author required').max(100, "*You reached the maximum number of characters"),
   imageUrl: yup.string().required('*Image required').url("*Put an image in url format"),
   article: yup.string().required('*Image required'),

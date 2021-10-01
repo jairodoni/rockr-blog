@@ -24,7 +24,9 @@ export default function Timeline() {
   //Function for get posts
   async function listPosts() {
     setLoading(true);
-    const { data, headers } = await api.get(`/articles?_page=${page}&_limit=${limitPosts}`)
+    const { data, headers } = await api.get(
+      `/articles?_sort=date&_order=desc&_page=${page}&_limit=${limitPosts}`
+    );
     setTotalPage(headers['x-total-count'] / limitPosts);
     setPosts([...posts, ...data]);
     setLoading(false);
@@ -58,7 +60,6 @@ export default function Timeline() {
         <section className={styles.timeline} >
           {posts.map(post => (
             <CardPost key={post.id} post={post} />
-
           ))}
         </section>
         {loading && page > 1 && (
