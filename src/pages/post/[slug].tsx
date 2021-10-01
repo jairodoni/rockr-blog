@@ -1,4 +1,5 @@
 import { GetStaticPaths, GetStaticProps } from 'next';
+import { Header } from '../../components/Header';
 import { api } from '../../services/api';
 
 import styles from './styles.module.scss';
@@ -19,18 +20,20 @@ interface PostProps {
 
 export default function Post({ post }: PostProps) {
   return (
-
-    <section className={styles.article}>
-      <div className={styles.content}>
-        <img src={post.imageUrl} alt="Image Post" />
-        <div>
-          <time>{post.date}</time>
-          <span>{post.author}</span>
-          <h2>{post.title}</h2>
+    <>
+      <Header title={post.title} />
+      <section className={styles.article}>
+        <div className={styles.content}>
+          <img src={post.imageUrl} alt="Image Post" />
+          <div>
+            <time>{post.date}</time>
+            <span>{post.author}</span>
+            <h2>{post.title}</h2>
+          </div>
         </div>
-      </div>
-      <article dangerouslySetInnerHTML={{ __html: post.article }} />
-    </section>
+        <article dangerouslySetInnerHTML={{ __html: post.article }} />
+      </section>
+    </>
   )
 }
 export const getStaticPaths: GetStaticPaths = async () => {
