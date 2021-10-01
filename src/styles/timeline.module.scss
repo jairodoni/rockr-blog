@@ -1,0 +1,18 @@
+.container {
+  max-width: 1366px;
+  margin: 10px auto;
+}
+
+.timeline {
+  width: 100%;
+  margin-top: 9rem;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(180px, 1fr));
+  row-gap: 3rem;
+}
+
+@media (max-width: 500px) {
+  .timeline {
+    row-gap: 0;
+  }
+}

@@ -1,0 +1,50 @@
+.article {
+  max-width: 1125px;
+  margin: 9rem auto;
+
+  color: var(--gray-600);
+  background: var(--white);
+
+  .content {
+    display: flex;
+    justify-content: space-between;
+
+    img {
+      width: 50%;
+      display: block;
+      object-fit: cover;
+    }
+
+    div {
+      width: 100%;
+      display: flex;
+      justify-content: space-around;
+      flex-direction: column;
+      padding: 10%;
+
+      time {
+        font-size: clamp(0.7rem, 0.2rem + 1vw, 2.5rem);
+      }
+      span {
+        font-size: clamp(0.9rem, 0.5rem + 1vw, 2.5rem);
+      }
+      h2 {
+        font-size: clamp(0.9rem, 0.5rem + 1vw, 2.5rem);
+        color: var(--yellow-500);
+      }
+    }
+  }
+
+  article {
+    width: 100%;
+    padding: 10% 20%;
+
+    display: flex;
+    flex-direction: column;
+
+    p {
+      line-height: 2rem;
+      font-size: clamp(0.2rem, 0.5rem + 1vw, 2.5rem);
+    }
+  }
+}
