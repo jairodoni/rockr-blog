@@ -13,9 +13,11 @@ export function Navigation() {
 
   return (
     <div className={styles.navigation}>
-      <h1>
-        Rockr Blog
-      </h1>
+      <Link href="/">
+        <h1>
+          Rockr Blog
+        </h1>
+      </Link>
       <nav>
         <Link href="/">
           <div className={styles.buttons}>
