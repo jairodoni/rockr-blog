@@ -25,7 +25,6 @@ export default function Timeline() {
   async function listPosts() {
     setLoading(true);
     const { data, headers } = await api.get(`/articles?_page=${page}&_limit=${limitPosts}`)
-
     setTotalPage(headers['x-total-count'] / limitPosts);
     setPosts([...posts, ...data]);
     setLoading(false);

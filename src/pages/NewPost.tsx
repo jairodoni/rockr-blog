@@ -3,10 +3,11 @@ import { useRouter } from 'next/router';
 import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useForm } from 'react-hook-form';
-import { Header } from '../../components/Header';
+import { Header } from '../components/Header';
 import toast, { Toaster } from 'react-hot-toast';
 
-import styles from './styles.module.scss'
+import styles from '../styles/newpost.module.scss'
+import { api } from '../services/api';
 interface Post {
   title: string;
   author: string;
@@ -36,9 +37,13 @@ export default function NewPost() {
         article: "<p>" + post.article + "</p>",
         date: new Date()
       }
-      toast.success('Post created!!! 👏');
-      reset();
-      router.push('/')
+
+      const resp = await api.post("/articles", postFormated);
+
+      if (resp.status >= 200 && resp.status < 300) {
+        toast.success('Post created!!! 👏');
+        router.push('/')
+      }
     } catch {
       return toast.error(
         'Error creating a new post, sorry to try again later.'

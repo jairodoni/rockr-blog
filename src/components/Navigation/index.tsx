@@ -17,22 +17,22 @@ export function Navigation() {
         Rockr Blog
       </h1>
       <nav>
-        <div className={styles.buttons}>
-          <Link href="/">
+        <Link href="/">
+          <div className={styles.buttons}>
             <a>Posts</a>
-          </Link>
-        </div>
+          </div>
+        </Link>
 
-        <div className={styles.buttons} onClick={handleOpenCloseContact}>
-          <Link href="/">
+        <Link href="/">
+          <div className={styles.buttons} onClick={handleOpenCloseContact}>
             <a>Contact</a>
-          </Link>
-        </div>
-        <div className={styles.newPost} >
-          <Link href="/NewPost">
+          </div>
+        </Link>
+        <Link href="/NewPost">
+          <div className={styles.newPost} >
             <a>New Post</a>
-          </Link>
-        </div>
+          </div>
+        </Link>
       </nav>
       <ContactModal
         isOpenContact={isOpenContact}
