@@ -1,10 +1,10 @@
 .container {
   max-width: 1125px;
-  margin: 10px auto;
+  margin: 9rem auto 10px;
 
   color: var(--gray-600);
   background: var(--white);
-  padding: 3.5rem 16%;
+  padding: 10px 16% 3.5rem;
 
   form {
     display: flex;
@@ -92,6 +92,6 @@
 }
 @media (min-width: 1600px) {
   .container {
-    padding: 3.5rem 10%;
+    padding: 10px 10% 3.5rem;
   }
 }

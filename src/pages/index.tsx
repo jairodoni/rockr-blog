@@ -58,6 +58,7 @@ export default function Timeline() {
         <section className={styles.timeline} >
           {posts.map(post => (
             <CardPost key={post.id} post={post} />
+
           ))}
         </section>
         {loading && page > 1 && (
