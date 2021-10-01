@@ -1,24 +1,32 @@
 import Image from 'next/image'
 import { useRouter } from 'next/router';
+import * as yup from 'yup';
+import { yupResolver } from '@hookform/resolvers/yup';
 import { useForm } from 'react-hook-form';
 import { Header } from '../../components/Header';
 
 import styles from './styles.module.scss'
-
 interface Post {
   title: string;
   author: string;
   imageUrl: string;
   article: string;
-  date: Date;
 }
+const signInFormSchema = yup.object().shape({
+  title: yup.string().required('*Title required').max(200, "*You reached the maximum number of characters"),
+  author: yup.string().required('*Author required').max(100, "*You reached the maximum number of characters"),
+  imageUrl: yup.string().required('*Image required').url("*Put an image in url format"),
+  article: yup.string().required('*Image required'),
+})
 
 export default function NewPost() {
-  const { register, handleSubmit, reset } = useForm();
+  const { register, handleSubmit, reset, formState: { errors } } = useForm<any>({
+    resolver: yupResolver(signInFormSchema)
+  });
 
   const router = useRouter();
 
-  async function handleSubmitFormContact(post: Post) {
+  async function handleSubmitNewPost(post: Post) {
     try {
       const postFormated = {
         title: post.title,
@@ -27,6 +35,7 @@ export default function NewPost() {
         article: "<p>" + post.article + "</p>",
         date: new Date()
       }
+      console.log(postFormated);
       reset();
       router.push('/')
     } catch {
@@ -38,7 +47,7 @@ export default function NewPost() {
     <>
       <Header title="New Post" />
       <div className={styles.container}>
-        <form onSubmit={handleSubmit(handleSubmitFormContact)} className={styles.container}>
+        <form onSubmit={handleSubmit(handleSubmitNewPost)} className={styles.container}>
           <Image
             width={240}
             height={240}
@@ -51,25 +60,44 @@ export default function NewPost() {
           <input
             type="text"
             placeholder="Fill the title"
+            className={`${errors?.title?.message ? styles.validate : ''}`}
             {...register('title')}
           />
+          {!!errors.title && (
+            <span>{errors.title.message}</span>
+          )}
+
           <label>Author</label>
           <input
             type="text"
             placeholder="Fill the author name"
+            className={`${errors?.author?.message ? styles.validate : ''}`}
             {...register('author')}
           />
+          {!!errors.author && (
+            <span>{errors.author.message}</span>
+          )}
+
           <label>Image URL</label>
           <input
             type="url"
             placeholder="Fill the image URL"
+            className={`${errors?.imageUrl?.message ? styles.validate : ''}`}
             {...register('imageUrl')}
           />
+          {!!errors.imageUrl && (
+            <span>{errors.imageUrl.message}</span>
+          )}
+
           <label>Post</label>
           <textarea
             placeholder="Post..."
+            className={`${errors?.article?.message ? styles.validate : ''}`}
             {...register('article')}
           />
+          {!!errors.article && (
+            <span>{errors.article.message}</span>
+          )}
 
           <div className={styles.submit}>
             <button type="submit">

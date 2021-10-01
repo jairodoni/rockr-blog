@@ -5,6 +5,7 @@
   color: var(--gray-600);
   background: var(--white);
   padding: 3.5rem 16%;
+
   form {
     display: flex;
     flex-direction: column;
@@ -24,15 +25,20 @@
     }
 
     label {
+      margin-left: 5px;
       font-weight: 500;
       color: var(--gray-700);
+    }
+    input + label,
+    span + label {
+      margin-top: 2rem;
     }
 
     input,
     textarea {
       width: 100%;
       height: 2.5rem;
-      margin: 5px 0 2rem;
+      margin: 5px;
       border-radius: 3px;
       border: 1px solid var(--gray-700);
       padding: 5px;
@@ -51,6 +57,7 @@
       button {
         width: 180px;
         height: 2.8rem;
+        margin-top: 3rem;
         padding: 5px;
         display: flex;
         align-items: center;
@@ -63,9 +70,17 @@
         font-weight: 500;
         font-size: 1.1rem;
         img {
-          width: 22px;
+          width: 18px;
         }
       }
+    }
+    span {
+      margin-left: 5px;
+      font-size: 0.9rem;
+      color: #f44336;
+    }
+    .validate {
+      border: 1px solid #f44336;
     }
   }
 }
