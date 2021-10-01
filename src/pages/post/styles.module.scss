@@ -42,10 +42,8 @@
     display: flex;
     flex-direction: column;
 
-    line-height: 2rem;
-    font-size: 1.2rem;
-
     p {
+      line-height: 2rem;
       font-size: clamp(0.2rem, 0.5rem + 1vw, 2.5rem);
     }
   }
