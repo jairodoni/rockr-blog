@@ -4,6 +4,7 @@ import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useForm } from 'react-hook-form';
 import { Header } from '../../components/Header';
+import toast, { Toaster } from 'react-hot-toast';
 
 import styles from './styles.module.scss'
 interface Post {
@@ -35,17 +36,20 @@ export default function NewPost() {
         article: "<p>" + post.article + "</p>",
         date: new Date()
       }
-      console.log(postFormated);
+      toast.success('Post created!!! 👏');
       reset();
       router.push('/')
     } catch {
-      alert("error");
+      return toast.error(
+        'Error creating a new post, sorry to try again later.'
+      );
     }
   }
 
   return (
     <>
       <Header title="New Post" />
+      <Toaster position="top-center" />
       <div className={styles.container}>
         <form onSubmit={handleSubmit(handleSubmitNewPost)} className={styles.container}>
           <Image
